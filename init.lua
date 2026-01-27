@@ -83,6 +83,12 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Indentation settings: use 2 spaces by default
+vim.o.expandtab = true -- Use spaces instead of tabs
+vim.o.tabstop = 2 -- Number of spaces a tab counts for
+vim.o.shiftwidth = 2 -- Number of spaces for autoindent
+vim.o.softtabstop = 2 -- Number of spaces for <Tab> and <BS>
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -593,6 +599,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
+        cssls = {},
         rust_analyzer = {
           procMacro = { enable = true },
         },
