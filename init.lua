@@ -603,7 +603,11 @@ require('lazy').setup({
         -- pyright = {},
         cssls = {},
         rust_analyzer = {
-          procMacro = { enable = true },
+          settings = {
+            ['rust-analyzer'] = {
+              procMacro = { enable = true },
+            },
+          },
         },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
