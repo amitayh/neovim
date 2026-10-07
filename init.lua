@@ -545,7 +545,9 @@ require('lazy').setup({
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              local filter = { bufnr = event.buf }
+              local enabled = vim.lsp.inlay_hint.is_enabled(filter)
+              vim.lsp.inlay_hint.enable(not enabled, filter)
             end, '[T]oggle Inlay [H]ints')
           end
         end,
