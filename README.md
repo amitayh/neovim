@@ -1,5 +1,7 @@
 # kickstart.nvim
 
+For Git workflows in this configuration, see the [Neogit guide](GIT_GUIDE.md).
+
 ## Introduction
 
 A starting point for Neovim that is:
