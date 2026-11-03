@@ -99,6 +99,23 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Copy the file path with the current line or Visual selection for an agent prompt.
+vim.keymap.set({ 'n', 'x' }, '<leader>yr', function()
+  local path = vim.fn.expand('%:p')
+  if path == '' then
+    vim.notify('Save the buffer before copying a file reference', vim.log.levels.WARN)
+    return
+  end
+  local reference = path .. ':' .. vim.fn.line('.')
+  if vim.fn.mode() ~= 'n' then
+    local first = math.min(vim.fn.line('v'), vim.fn.line('.'))
+    local last = math.max(vim.fn.line('v'), vim.fn.line('.'))
+    reference = path .. ':' .. first .. '-' .. last
+  end
+  vim.fn.setreg('+', reference)
+  vim.notify('Copied ' .. reference)
+end, { desc = '[Y]ank file and line [R]ange' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
