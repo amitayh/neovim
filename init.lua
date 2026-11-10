@@ -101,15 +101,15 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagno
 
 -- Copy the file path with the current line or Visual selection for an agent prompt.
 vim.keymap.set({ 'n', 'x' }, '<leader>yr', function()
-  local path = vim.fn.expand('%:p')
+  local path = vim.fn.expand '%:p'
   if path == '' then
     vim.notify('Save the buffer before copying a file reference', vim.log.levels.WARN)
     return
   end
-  local reference = path .. ':' .. vim.fn.line('.')
+  local reference = path .. ':' .. vim.fn.line '.'
   if vim.fn.mode() ~= 'n' then
-    local first = math.min(vim.fn.line('v'), vim.fn.line('.'))
-    local last = math.max(vim.fn.line('v'), vim.fn.line('.'))
+    local first = math.min(vim.fn.line 'v', vim.fn.line '.')
+    local last = math.max(vim.fn.line 'v', vim.fn.line '.')
     reference = path .. ':' .. first .. '-' .. last
   end
   vim.fn.setreg('+', reference)
@@ -909,6 +909,16 @@ require('lazy').setup({
       'nvim-telescope/telescope.nvim',
     },
     config = true,
+  },
+  {
+    'sindrets/diffview.nvim',
+    opts = {
+      keymaps = {
+        view = { { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } } },
+        file_panel = { { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } } },
+        file_history_panel = { { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } } },
+      },
+    },
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
