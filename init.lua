@@ -913,6 +913,9 @@ require('lazy').setup({
   {
     'sindrets/diffview.nvim',
     opts = {
+      file_panel = {
+        win_config = { width = 50 },
+      },
       keymaps = {
         view = { { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } } },
         file_panel = { { 'n', 'q', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' } } },
